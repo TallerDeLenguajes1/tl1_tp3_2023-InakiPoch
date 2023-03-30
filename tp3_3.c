@@ -4,9 +4,13 @@
 
 
 int main(int argc,char** argv) {
-    char** names = (char**)malloc(sizeof(char*)*5);
+    int numberOfNames;
+    printf("Ingresar la cantidad de nombres: ");
+    scanf("%d",&numberOfNames);
+    fflush(stdin);
+    char** names = (char**)malloc(sizeof(char*)*numberOfNames);
     char* buffer = (char*)malloc(100);
-    for(int i = 0; i < 5; i++) {
+    for(int i = 0; i < numberOfNames; i++) {
         printf("\nIngresar la frase %d: ",i+1);
         gets(buffer);
         names[i] = (char*)malloc(strlen(buffer)+1);
