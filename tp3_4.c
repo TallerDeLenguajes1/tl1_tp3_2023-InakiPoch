@@ -32,6 +32,15 @@ void generateProducts(Product* product,int number) {
     }
 }
 
+float totalPrice(Product* product,int number) {
+    float totalPrice = 0;
+    for(int i = 0 ; i < number ; i++) {
+        totalPrice += product->unitPrice;
+        product++;
+    }
+    return totalPrice;
+}
+
 void chargeClient(Client* client,int number) {
     for(int i = 0 ; i < number ; i++) {
         printf("\n-----CLIENTE %d-----\n",i+1);
@@ -64,6 +73,7 @@ void printClientData(Client* client,int number) {
         printf("\nNombre: %s",client->clientName);
         printf("\nCantidad de productos: %d",client->numberOfProducts);
         printProductData(client->products,client->numberOfProducts);
+        printf("\n\nTotal a pagar: %.1f\n",totalPrice(client->products,client->numberOfProducts));
         client++;
     }                              
 }
@@ -81,6 +91,7 @@ int main(int argc,char** argv) {
     fflush(stdin);
     clients = (Client*)malloc(sizeof(Client)*numberOfClients);
     chargeClient(clients,numberOfClients);
+    printf("\n-----DATOS CARGADOS-----\n");
     printClientData(clients,numberOfClients);
     for(int i = 0 ; i < numberOfClients ; i++) {
         free(clients->products);
